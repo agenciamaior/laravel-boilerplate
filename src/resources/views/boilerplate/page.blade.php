@@ -125,6 +125,26 @@
     
         <!-- Main content -->
         <section class="content">
+            @if(Session::has('flash.success'))
+                <div class="alert alert-success">
+                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                      <span aria-hidden="true">&times;</span>
+                    </button>
+
+                    {{ Session::get('flash.success') }}
+                </div>
+            @endif
+
+            @if(Session::has('flash.error'))
+                <div class="alert alert-error">
+                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                      <span aria-hidden="true">&times;</span>
+                    </button>
+                    
+                    {{ Session::get('flash.error') }}
+                </div>
+            @endif
+
             @yield('content')
         </section>
         <!-- /.content -->

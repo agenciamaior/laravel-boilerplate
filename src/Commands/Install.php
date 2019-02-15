@@ -45,7 +45,7 @@ class Install extends Command
 
         echo "Instalando pacotes NPM...\n";
 
-        //$this->installNpmPackages();
+        $this->installNpmPackages();
 
         echo "\033[32mPacotes NPM instalados\033[0m\n";
 
@@ -82,6 +82,12 @@ class Install extends Command
             '@fortawesome/fontawesome-free',
             'jquery-validation',
             'datatables.net-bs4',
+            'select2',
+            'jquery-maskmoney',
+            'jquery-mask-plugin',
+            'moment',
+            'numeral',
+            'webpack-jquery-ui',
         ];
 
         $command = 'npm i ' . implode(' ', $npmLibraries);
