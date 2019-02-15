@@ -109,7 +109,7 @@ class UsersController extends Controller
 
         $user->save();
 
-        return redirect()->route('profile')->with('flash.success', 'Perfil salvo com sucesso');
+        return redirect()->route('users.profile')->with('flash.success', 'Perfil salvo com sucesso');
     }
 
     public function checkEmail(Request $request)

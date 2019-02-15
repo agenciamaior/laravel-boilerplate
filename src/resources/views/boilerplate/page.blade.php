@@ -16,7 +16,7 @@
             </ul>
         
             <!-- SEARCH FORM -->
-            <form class="form-inline ml-3">
+            {{-- <form class="form-inline ml-3">
                 <div class="input-group input-group-sm">
                     <input class="form-control form-control-navbar" type="search" placeholder="Buscar..." aria-label="Search">
                     <div class="input-group-append">
@@ -25,12 +25,12 @@
                         </button>
                     </div>
                 </div>
-            </form>
+            </form> --}}
         
             <!-- Right navbar links -->
             <ul class="navbar-nav ml-auto">
                 <!-- Notifications Dropdown Menu -->
-                <li class="nav-item dropdown">
+                {{-- <li class="nav-item dropdown">
                     <a class="nav-link" data-toggle="dropdown" href="#">
                         <i class="fa fa-bell"></i>
                         <span class="badge badge-warning navbar-badge">15</span>
@@ -63,7 +63,7 @@
 
                         <a href="#" class="dropdown-item dropdown-footer">See All Notifications</a>
                     </div>
-                </li>
+                </li> --}}
 
                 <li class="nav-item d-none d-sm-inline-block">
                     {{ Form::open(['url' => route('logout')]) }}
@@ -88,18 +88,18 @@
             <!-- Sidebar user panel (optional) -->
             <div class="user-panel mt-3 pb-3 mb-3 d-flex">
             <div class="image">
-                <img src="{{ asset('images/user.png') }}" class="img-circle elevation-2" alt="User Image">
+                <div class="user-no-photo-avatar">{{ Auth::user()->initials }}</div>
             </div>
             <div class="info">
-                <a href="#" class="d-block">{{ Auth::user()->name }}</a>
+                <a href="{{ route('users.profile') }}" class="d-block">{{ Auth::user()->name }}</a>
             </div>
             </div>
     
             <!-- Sidebar Menu -->
             <nav class="mt-2">
-            <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
-                @include('boilerplate.main-menu')
-            </ul>
+                <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
+                    @include('boilerplate.main-menu')
+                </ul>
             </nav>
             <!-- /.sidebar-menu -->
         </div>
@@ -152,10 +152,8 @@
         </div>
         <!-- /.content-wrapper -->
         <footer class="main-footer">
-            <strong>Copyright &copy; 2014-2018 <a href="http://adminlte.io">AdminLTE.io</a>.</strong>
-            All rights reserved.
-            <div class="float-right d-none d-sm-inline-block">
-                <b>Version</b> 3.0.0-alpha
+            <div class="text-right">
+                Versão <b>1.0.0</b>
             </div>
         </footer>
     
@@ -165,7 +163,7 @@
         </aside>
         <!-- /.control-sidebar -->
   </div>
-  <!-- ./wrapper -->    
+  <!-- ./wrapper -->
 @endsection
 
 @section('adminlte_js')

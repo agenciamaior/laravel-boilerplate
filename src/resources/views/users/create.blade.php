@@ -1,4 +1,4 @@
-@extends('layouts.page')
+@extends('boilerplate.page')
 
 @section('header-title')
     <h1>

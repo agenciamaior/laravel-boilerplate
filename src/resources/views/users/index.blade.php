@@ -1,4 +1,4 @@
-@extends('layouts.page')
+@extends('boilerplate.page')
 
 @section('header-title')
     <h1>
@@ -7,7 +7,7 @@
 @stop
 
 @section('content')
-    <div class="actions">
+    <div class="my-2">
         <a href="{{ route('users.create') }}" class="btn btn-primary"><i class="fa fa-plus"></i> Novo Usuário</a>
     </div>
 
@@ -18,7 +18,7 @@
                     <tr>
                         <th>Nome</th>
                         <th>E-mail</th>
-                        <th class="to-center" data-orderable="false">Ações</th>
+                        <th data-orderable="false"></th>
                     </tr>
                 </thead>
                 <tbody>

@@ -3,10 +3,15 @@
 @import "~@fortawesome/fontawesome-free/scss/fontawesome.scss";
 @import "~@fortawesome/fontawesome-free/scss/solid.scss";
 @import "~@fortawesome/fontawesome-free/scss/brands.scss";
+@import "~datatables.net-bs4/css/dataTables.bootstrap4.min";
 
 $fa-font-path: "../webfonts";
 
 $colorDanger: #f56954;
+
+.content-wrapper > .content {
+    padding-bottom: 1em;
+}
 
 form {
     input.error, select.error {
@@ -17,4 +22,27 @@ form {
         color: $colorDanger;
         margin-top: 3px;
     }
+}
+
+.table-actions {
+    display: flex;
+    justify-content: flex-end;
+    flex-wrap: wrap;
+
+    a {
+        margin-right: 5px;
+        margin-bottom: 5px;
+    }
+}
+
+.user-no-photo-avatar {
+    text-align: center;
+    color: #fff;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    line-height: 40px;
+    font-weight: lighter;
+    font-size: 20px;
+    background: #F9664A;
 }

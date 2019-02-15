@@ -53,6 +53,8 @@ class Install extends Command
 
         echo "Copiando arquivos... ";
 
+        $this->setModels();
+
         $this->setControllers();
 
         $this->setRoutes();
@@ -148,6 +150,10 @@ class Install extends Command
             fwrite($file, "\n\n" . $requireCommand);
             fclose($file);
         }
+    }
+
+    public function setModels() {
+        File::copyDirectory(self::SOURCES_PATH . '/models', self::ROOT_PATH . '/app');
     }
 
     public function setControllers() {

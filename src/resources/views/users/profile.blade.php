@@ -1,7 +1,7 @@
-@extends('layouts.page')
+@extends('boilerplate.page')
 
 @section('header-title')
-    <h1 class="m-0 text-dark">Perfil</h1>
+    <h1>Perfil</h1>
 @endsection
 
 @section('content')
