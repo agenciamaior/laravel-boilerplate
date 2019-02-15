@@ -1,0 +1,28 @@
+{
+    "name": "kdymsolucoes/laravel_boilerplate",
+    "description": "Template padrão para início de projetos com Laravel",
+    "type": "library",
+    "authors": [
+        {
+            "name": "Kdym Soluções",
+            "email": "kdymsolucoes@gmail.com"
+        }
+    ],
+    "autoload": {
+        "psr-4": {
+            "KdymSolucoes\\LaravelBoilerplate\\": "src/"
+        }
+    },
+    "extra": {
+        "laravel": {
+            "providers": [
+                "KdymSolucoes\\LaravelBoilerplate\\LaravelBoilerplateServiceProvider"
+            ]
+        }
+    },
+    "require": {
+        "laravel/framework": "^5.5",
+        "kdymsolucoes/bootstrap_forms": "^0.0.1",
+        "doctrine/dbal": "^2.9"
+    }
+}

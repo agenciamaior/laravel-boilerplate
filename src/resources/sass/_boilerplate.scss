@@ -1,0 +1,20 @@
+@import url('https://fonts.googleapis.com/css?family=Nunito');
+@import '~admin-lte/dist/css/adminlte.css';
+@import "~@fortawesome/fontawesome-free/scss/fontawesome.scss";
+@import "~@fortawesome/fontawesome-free/scss/solid.scss";
+@import "~@fortawesome/fontawesome-free/scss/brands.scss";
+
+$fa-font-path: "../webfonts";
+
+$colorDanger: #f56954;
+
+form {
+    input.error, select.error {
+        border-color: $colorDanger;
+    }
+
+    label.error {
+        color: $colorDanger;
+        margin-top: 3px;
+    }
+}
