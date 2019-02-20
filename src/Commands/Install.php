@@ -53,11 +53,15 @@ class Install extends Command
 
         echo "Copiando arquivos... ";
 
+        $this->copyMigrations();
+
         $this->setModels();
 
         $this->setControllers();
 
-        $this->setRoutes();
+        $this->setACL();
+
+        //$this->setRoutes();
 
         $this->setStyles();
 
@@ -69,7 +73,7 @@ class Install extends Command
 
         echo "\033[32mPronto\033[0m\n";
 
-        echo "\033[33mBoilerplate instalado com sucesso, não se esqueça de executar o comando npm run watch para compilar os assets\033[0m\n";
+        echo "\033[32mBoilerplate instalado com sucesso\033[0m\n";
     }
 
     public function installNpmPackages() {
@@ -105,6 +109,15 @@ class Install extends Command
         echo "$command \n";
 
         exec($command);
+    }
+
+    public function copyMigrations() {
+        File::copyDirectory(self::SOURCES_PATH . '/migrations', self::ROOT_PATH . '/database/migrations');
+    }
+
+    public function setACL() {
+        File::copyDirectory(self::SOURCES_PATH . '/Providers', self::ROOT_PATH . '/app/Providers');
+        File::copyDirectory(self::SOURCES_PATH . '/Policies', self::ROOT_PATH . '/app/Policies');
     }
 
     public function setStyles() {

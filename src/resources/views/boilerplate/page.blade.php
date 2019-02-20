@@ -88,7 +88,7 @@
             <!-- Sidebar user panel (optional) -->
             <div class="user-panel mt-3 pb-3 mb-3 d-flex">
             <div class="image">
-                <div class="user-no-photo-avatar">{{ Auth::user()->initials }}</div>
+                {!! Auth::user()->avatar !!}
             </div>
             <div class="info">
                 <a href="{{ route('users.profile') }}" class="d-block">{{ Auth::user()->name }}</a>

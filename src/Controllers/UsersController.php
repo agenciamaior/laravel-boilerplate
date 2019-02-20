@@ -32,6 +32,8 @@ class UsersController extends Controller
 
     public function index()
     {
+        $this->authorize('index', User::class);
+
         $users = User::orderBy('name')->get();
 
         return view('users.index', [
@@ -41,6 +43,8 @@ class UsersController extends Controller
 
     public function create()
     {
+        $this->authorize('create', User::class);
+
         $user = new User;
 
         return view('users.create', [
@@ -63,6 +67,8 @@ class UsersController extends Controller
 
     public function edit(User $user)
     {
+        $this->authorize('edit', $user);
+
         return view('users.edit', [
             'user' => $user
         ]);
@@ -79,9 +85,9 @@ class UsersController extends Controller
         return redirect()->route('users.index')->with('flash.success', 'Usuário salvo com sucesso');
     }
 
-    public function destroy($id)
+    public function destroy(User $user)
     {
-        $user = User::find($id);
+        $this->authorize('destroy', $user);
 
         $user->delete();
 
@@ -107,7 +113,17 @@ class UsersController extends Controller
             $user->password = Hash::make($request->new_password);
         }
 
+        if ($request->hasFile('imagem')) {
+            $extension = $request->file('imagem')->getClientOriginalExtension();
+
+            $user->avatar_extension = $extension;
+        }
+
         $user->save();
+
+        if ($request->hasFile('imagem')) {
+            $request->file('imagem')->move(base_path('/public/files/users'), sprintf('%s.%s', $user->id, $extension));
+        }
 
         return redirect()->route('users.profile')->with('flash.success', 'Perfil salvo com sucesso');
     }
@@ -141,5 +157,25 @@ class UsersController extends Controller
         $user = Auth::user();
 
         return (Hash::check($request->old_password, $user->password)) ? 'true' : 'false';
+    }
+
+    public function block(User $user) {
+        $this->authorize('block', $user);
+
+        $user->locked = true;
+
+        $user->save();
+
+        return redirect()->route('users.index')->with('flash.success', 'Usuário bloqueado com sucesso');
+    }
+
+    public function unblock(User $user) {
+        $this->authorize('unblock', $user);
+
+        $user->locked = false;
+
+        $user->save();
+
+        return redirect()->route('users.index')->with('flash.success', 'Usuário desbloqueado com sucesso');
     }
 }

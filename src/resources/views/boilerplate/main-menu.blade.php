@@ -34,20 +34,22 @@
     </a>
     
     <ul class="nav nav-treeview">
-        @php
-            $class = '';
-        
-            if ($controller == 'UsersController' && $action <> 'profile') {
-                $class = 'active';
-            }
-        @endphp
+        @can('index', \App\User::class)    
+            @php
+                $class = '';
+            
+                if ($controller == 'UsersController' && $action <> 'profile') {
+                    $class = 'active';
+                }
+            @endphp
 
-        <li class="nav-item">
-            <a href="{{ route('users.index') }}" class="nav-link {{ $class }}">
-                <i class="fa fa-users nav-icon"></i>
-                <p>Usuários</p>
-            </a>
-        </li>
+            <li class="nav-item">
+                <a href="{{ route('users.index') }}" class="nav-link {{ $class }}">
+                    <i class="fa fa-users nav-icon"></i>
+                    <p>Usuários</p>
+                </a>
+            </li>
+        @endcan
 
         @php
             $class = '';

@@ -8,7 +8,9 @@
 
 @section('content')
     <div class="my-2">
-        <a href="{{ route('users.create') }}" class="btn btn-primary"><i class="fa fa-plus"></i> Novo Usuário</a>
+        @can('create', \App\User::class)
+            <a href="{{ route('users.create') }}" class="btn btn-primary"><i class="fa fa-plus"></i> Novo Usuário</a>
+        @endcan
     </div>
 
     <div class="card">
@@ -23,14 +25,36 @@
                 </thead>
                 <tbody>
                     @foreach($users as $u)
-                        <tr>
+                        @php
+                            $class = '';
+
+                            if ($u->locked) {
+                                $class = 'text-muted';
+                            }
+                        @endphp
+
+                        <tr class="{{ $class }}">
                             <td>{{ $u->name }}</td>
                             <td>{{ $u->email }}</td>
                             <td>
                                 <div class="table-actions">
-                                    <a href="{{ route('users.edit', ['user' => $u]) }}" class="btn btn-default btn-sm"><i class="fa fa-pencil-alt"></i> Editar</a>
+                                    @can('edit', $u)
+                                        <a href="{{ route('users.edit', ['user' => $u]) }}" class="btn btn-default btn-sm"><i class="fa fa-pencil-alt"></i> Editar</a>
+                                    @endcan
 
-                                    {{ Html::bsDelete('Excluir', route('users.destroy', ['user' => $u]), ['button_class' => 'btn btn-danger btn-sm confirmable']) }}
+                                    @if ($u->locked)
+                                        @can('block', $u)
+                                            <a href="{{ route('users.block', ['user' => $u]) }}" class="btn btn-default btn-sm"><i class="fa fa-lock"></i> Bloquear</a>
+                                        @endcan
+                                    @else
+                                        @can('unblock', $u)
+                                            <a href="{{ route('users.unblock', ['user' => $u]) }}" class="btn btn-default btn-sm"><i class="fa fa-lock-open"></i> Desbloquear</a>
+                                        @endcan
+                                    @endif
+
+                                    @can('destroy', $u)
+                                        {{ Html::bsDelete('Excluir', route('users.destroy', ['user' => $u]), ['button_class' => 'btn btn-danger btn-sm confirmable']) }}
+                                    @endcan
                                 </div>
                             </td>
                         </tr>

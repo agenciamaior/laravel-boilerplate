@@ -10,6 +10,14 @@ class User extends Authenticatable
 {
     use Notifiable;
 
+    const ROLE_ADMIN = 0;
+    const ROLE_COMMON = 1;
+
+    public static $roles = [
+        self::ROLE_ADMIN => 'Administrador',
+        self::ROLE_COMMON => 'Comum',
+    ];
+
     /**
      * The attributes that are mass assignable.
      *
@@ -28,13 +36,26 @@ class User extends Authenticatable
         'password', 'remember_token',
     ];
 
-    public function getInitialsAttribute() {
-        $buffer = explode(' ', $this->name);
+    public function getAvatarAttribute() {
+        if ($this->avatar_extension) {
+            $image = sprintf('/files/users/%s.%s', $this->id, $this->avatar_extension);
 
-        if (!empty($buffer[1])) {
-            return strtoupper($buffer[0][0].$buffer[1][0]);
+            return '<img src="' . $image . '" class="img-circle elevation-2">';
         } else {
-            return strtoupper($buffer[0][0]);
+            $buffer = explode(' ', $this->name);
+            $initials = '';
+    
+            if (!empty($buffer[1])) {
+                $initials = strtoupper($buffer[0][0].$buffer[1][0]);
+            } else {
+                $initials = strtoupper($buffer[0][0]);
+            }
+
+            return '<div class="user-no-photo-avatar img-circle elevation-2">' . $initials . '</div>';
         }
+    }
+
+    public function getRoleStringAttribute() {
+        return self::$roles[$this->role];
     }
 }

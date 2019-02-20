@@ -5,13 +5,28 @@
 @endsection
 
 @section('content')
-    {{ Form::model($user, ['id' => 'profile-form', 'url' => route('users.save-profile')]) }}
+    {{ Form::model($user, ['id' => 'profile-form', 'url' => route('users.save-profile'), 'files' => true]) }}
 
     <div class="card">
         <div class="card-body">
             {{ Form::bsText('name', 'Nome') }}
 
             {{ Form::bsEmail('email', 'E-mail') }}
+
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label>Avatar</label>
+                        {{ Form::file('imagem', ['class' => 'form-control']) }}
+                    </div>
+
+                    @if ($user->avatar_extension)    
+                        <div class="form-image-container">
+                            <img src="/files/users/{{ $user->id . '.' . $user->avatar_extension }}">
+                        </div>
+                    @endif
+                </div>
+            </div>
         </div>
     </div>
 

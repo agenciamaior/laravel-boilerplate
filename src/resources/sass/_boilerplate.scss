@@ -5,9 +5,7 @@
 @import "~@fortawesome/fontawesome-free/scss/brands.scss";
 @import "~datatables.net-bs4/css/dataTables.bootstrap4.min";
 
-$fa-font-path: "../webfonts";
-
-$colorDanger: #f56954;
+@import "variables";
 
 .content-wrapper > .content {
     padding-bottom: 1em;
@@ -21,6 +19,15 @@ form {
     label.error {
         color: $colorDanger;
         margin-top: 3px;
+    }
+
+    .form-image-container {
+        margin: 10px 0;
+    
+        img {
+            border-radius: 5px;
+            height: 100px;
+        }
     }
 }
 
@@ -37,12 +44,11 @@ form {
 
 .user-no-photo-avatar {
     text-align: center;
-    color: #fff;
+    color: #17394d;
     width: 40px;
     height: 40px;
-    border-radius: 50%;
     line-height: 40px;
     font-weight: lighter;
-    font-size: 20px;
-    background: #F9664A;
+    font-size: 16px;
+    background: #dfe3e6;
 }
