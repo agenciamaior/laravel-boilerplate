@@ -61,7 +61,7 @@ class Install extends Command
 
         $this->setACL();
 
-        //$this->setRoutes();
+        $this->setRoutes();
 
         $this->setStyles();
 
