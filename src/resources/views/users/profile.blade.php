@@ -15,16 +15,7 @@
 
             <div class="row">
                 <div class="col-md-6">
-                    <div class="form-group">
-                        <label>Avatar</label>
-                        {{ Form::file('imagem', ['class' => 'form-control']) }}
-                    </div>
-
-                    @if ($user->avatar_extension)    
-                        <div class="form-image-container">
-                            <img src="/files/users/{{ $user->id . '.' . $user->avatar_extension }}">
-                        </div>
-                    @endif
+                    {{ Form::bsFile('imagem', 'Avatar', ['default' => ($user->avatar_extension) ? sprintf('/files/users/%s.%s', $user->id, $user->avatar_extension) : null]) }}
                 </div>
             </div>
         </div>
@@ -82,9 +73,7 @@
                 },
                 'old_password': {
                     'remote': {
-                        depends: function(element) {
-                            return $('#old_password').val() != '';
-                        },
+                        depends: () => $('#old_password').val() !== '',
                         param: {
                             url: '{{ route('users.check-profile-password') }}',
                             type: 'post',
@@ -95,14 +84,10 @@
                     },
                 },
                 'new_password': {
-                    'required': function(element) {
-                        return $('#old_password').val() != '';
-                    }
+                    'required': () => $('#old_password').val() !== '',
                 },
                 'confirm_password': {
-                    'required': function(element) {
-                        return $('#old_password').val() != '' && $('#new_password').val() != '';
-                    },
+                    'required': () => $('#old_password').val() !== '' && $('#new_password').val() !== '',
                     'equalTo': '#new_password'
                 }
             },

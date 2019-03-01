@@ -8,9 +8,13 @@ require('jquery-maskmoney/dist/jquery.maskMoney');
 require('jquery-mask-plugin');
 require('webpack-jquery-ui/css');
 require('webpack-jquery-ui/datepicker');
+require('summernote');
+require('summernote/dist/summernote-bs4');
+require('./bootstrap_forms');
 
 window.moment = require('moment');
 window.numeral = require('numeral');
+window.Chart = require('chart.js');
 
 require('./i18n/boilerplate/pt-br');
 
@@ -51,15 +55,46 @@ cpfCnpjOptions = {
 $('.cpf-cnpj-mask').mask(CpfCnpjMaskBehavior, cpfCnpjOptions);
 
 $('.datepicker').datepicker();
+$('.select-2').select2({
+    theme: "bootstrap4"
+});
 
-$('.br-money-mask').maskMoney({
+$('.money-mask').maskMoney({
     prefix: 'R$ ',
     allowNegative: false,
     thousands: '.',
     decimal: ',',
 });
 
-jQuery.validator.addMethod("dateBR", function (value, element) {
+$('.number-mask').maskMoney({
+    prefix: '',
+    allowNegative: false,
+    thousands: '.',
+    decimal: ',',
+});
+
+$('.percent-mask').maskMoney({
+    prefix: '',
+    suffix: '%',
+    allowNegative: false,
+    thousands: '.',
+    decimal: ',',
+});
+
+$('.editor').summernote({
+    lang: 'pt-BR',
+    height: 150,
+    toolbar: [
+        ['style', ['bold', 'italic', 'underline', 'clear']],
+        ['font', ['strikethrough', 'superscript', 'subscript']],
+        ['fontsize', ['fontsize']],
+        ['color', ['color']],
+        ['para', ['ul', 'ol', 'paragraph', 'link']],
+        ['undoredo', ['undo', 'redo']],
+    ]
+});
+
+$.validator.addMethod("dateBR", function (value, element) {
     return this.optional(element) || moment(value, $.moment.dateFormat).isValid();
 }, $.validator.messages.date);
 
@@ -69,3 +104,15 @@ $.validator.addMethod('period', function (value, element, params) {
 
     return this.optional(element) || startDate <= endDate;
 }, $.validator.messages.period);
+
+$.validator.addMethod('filesize', function (value, element, param) {
+    return this.optional(element) || (element.files[0].size <= param * 1024 * 1024)
+}, $.validator.messages.filesize);
+
+$.validator.addMethod('cpfCnpj', function (value, element) {
+    return this.optional(element) || value.length === 14 || value.length === 18;
+}, $.validator.messages.pattern);
+
+$.validator.addMethod('editorRequired', function (value, element) {
+    return !$(element).summernote('isEmpty');
+}, $.validator.messages.required);

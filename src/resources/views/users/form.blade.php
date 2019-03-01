@@ -17,6 +17,12 @@
                 </div>
             </div>
         @endif
+
+        <div class="row">
+            <div class="col-md-6">
+                {{ Form::bsSelect('role', 'Perfil', \App\User::$roles) }}
+            </div>
+        </div>
     </div>
 </div>
 
@@ -46,6 +52,7 @@
                     'required': true,
                     'equalTo': '#password'
                 },
+                'role': 'required',
             },
             messages: {
                 'email': {

@@ -20,6 +20,7 @@
                     <tr>
                         <th>Nome</th>
                         <th>E-mail</th>
+                        <th>Perfil</th>
                         <th data-orderable="false"></th>
                     </tr>
                 </thead>
@@ -36,19 +37,20 @@
                         <tr class="{{ $class }}">
                             <td>{{ $u->name }}</td>
                             <td>{{ $u->email }}</td>
+                            <td>{{ $u->role_string }}</td>
                             <td>
                                 <div class="table-actions">
                                     @can('edit', $u)
                                         <a href="{{ route('users.edit', ['user' => $u]) }}" class="btn btn-default btn-sm"><i class="fa fa-pencil-alt"></i> Editar</a>
                                     @endcan
 
-                                    @if ($u->locked)
+                                    @if (!$u->locked)
                                         @can('block', $u)
-                                            <a href="{{ route('users.block', ['user' => $u]) }}" class="btn btn-default btn-sm"><i class="fa fa-lock"></i> Bloquear</a>
+                                            <a href="{{ route('users.block', ['user' => $u]) }}" class="btn btn-default btn-sm confirmable"><i class="fa fa-lock"></i> Bloquear</a>
                                         @endcan
                                     @else
                                         @can('unblock', $u)
-                                            <a href="{{ route('users.unblock', ['user' => $u]) }}" class="btn btn-default btn-sm"><i class="fa fa-lock-open"></i> Desbloquear</a>
+                                            <a href="{{ route('users.unblock', ['user' => $u]) }}" class="btn btn-default btn-sm confirmable"><i class="fa fa-lock-open"></i> Desbloquear</a>
                                         @endcan
                                     @endif
 

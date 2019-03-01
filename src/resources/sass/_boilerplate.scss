@@ -4,6 +4,9 @@
 @import "~@fortawesome/fontawesome-free/scss/solid.scss";
 @import "~@fortawesome/fontawesome-free/scss/brands.scss";
 @import "~datatables.net-bs4/css/dataTables.bootstrap4.min";
+@import "~select2/dist/css/select2.min";
+@import "~@ttskch/select2-bootstrap4-theme/dist/select2-bootstrap4.min";
+@import "~summernote/dist/summernote-bs4";
 
 @import "variables";
 
@@ -51,4 +54,32 @@ form {
     font-weight: lighter;
     font-size: 16px;
     background: #dfe3e6;
+}
+
+.select2 {
+    width: 100% !important;
+}
+
+.select2-container .select2-selection--single .select2-selection__rendered {
+    padding: 0.30rem 0.75rem;
+}
+
+.note-editor {
+    &.note-frame {
+        border: 1px solid rgba(0, 0, 0, 0.125) !important;
+    }
+
+    .card {
+        box-shadow: 0 0 !important;
+    }
+    
+    .card-header.note-toolbar {
+        background: white !important;
+    }
+    
+    .btn-light {
+        background-color: #fff !important;
+        border-color: rgba(0, 0, 0, 0.125) !important;
+        box-shadow: 0 0 !important;
+    }
 }

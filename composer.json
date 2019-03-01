@@ -21,8 +21,8 @@
         }
     },
     "require": {
-        "laravel/framework": "^5.5",
-        "kdymsolucoes/bootstrap_forms": "^0.0.1",
-        "doctrine/dbal": "^2.9"
+        "laravel/framework": ">=5.5",
+        "kdymsolucoes/bootstrap_forms": ">=0.0.1",
+        "doctrine/dbal": ">=2.9"
     }
 }

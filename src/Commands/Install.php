@@ -89,11 +89,14 @@ class Install extends Command
             'jquery-validation',
             'datatables.net-bs4',
             'select2',
+            '@ttskch/select2-bootstrap4-theme',
             'jquery-maskmoney',
             'jquery-mask-plugin',
             'moment',
             'numeral',
             'webpack-jquery-ui',
+            'summernote',
+            'codemirror',
         ];
 
         $command = 'npm i ' . implode(' ', $npmLibraries);
@@ -141,6 +144,12 @@ class Install extends Command
         // }
 
         // copy(self::SOURCES_PATH . '/resources/js/i18n/boilerplate/pt-br.js', self::ROOT_PATH . '/resources/js/i18n/boilerplate/pt-br.js');
+        
+        $command = 'php artisan vendor:publish --tag=bootstrap_forms_js --force';
+
+        //echo "$command \n";
+
+        exec($command);
 
         File::copyDirectory(self::SOURCES_PATH . '/resources/js', self::ROOT_PATH . '/resources/js');
 

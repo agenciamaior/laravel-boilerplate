@@ -22,6 +22,7 @@ $.extend($.validator.messages, {
     min: jQuery.validator.format("Por favor, forne&ccedil;a um valor maior ou igual a {0}."),
     pattern: 'Formato inválido',
     filesize: 'Tamanho inválido (Máximo {0}MB)',
+    extension: 'Extensão inválida',
 });
 
 $.validator.patterns = {
@@ -103,3 +104,5 @@ numeral.register('locale', 'pt-br', {
     }
 });
 numeral.locale('pt-br');
+
+require('summernote/dist/lang/summernote-pt-BR');
