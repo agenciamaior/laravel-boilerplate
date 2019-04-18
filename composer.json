@@ -1,28 +1,28 @@
 {
-    "name": "kdymsolucoes/laravel_boilerplate",
+    "name": "agenciamaior/laravel_boilerplate",
     "description": "Template padrão para início de projetos com Laravel",
     "type": "library",
     "authors": [
         {
-            "name": "Kdym Soluções",
-            "email": "kdymsolucoes@gmail.com"
+            "name": "Agência Maior",
+            "email": "alexandre.sottani@agenciamaior.com.br"
         }
     ],
     "autoload": {
         "psr-4": {
-            "KdymSolucoes\\LaravelBoilerplate\\": "src/"
+            "AgenciaMaior\\LaravelBoilerplate\\": "src/"
         }
     },
     "extra": {
         "laravel": {
             "providers": [
-                "KdymSolucoes\\LaravelBoilerplate\\LaravelBoilerplateServiceProvider"
+                "AgenciaMaior\\LaravelBoilerplate\\LaravelBoilerplateServiceProvider"
             ]
         }
     },
     "require": {
         "laravel/framework": ">=5.5",
-        "kdymsolucoes/bootstrap_forms": ">=0.0.1",
+        "agenciamaior/bootstrap_forms": ">=0.0.1",
         "doctrine/dbal": ">=2.9"
     }
 }

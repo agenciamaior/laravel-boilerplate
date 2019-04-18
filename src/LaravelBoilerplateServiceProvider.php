@@ -1,6 +1,6 @@
 <?php
 
-namespace KdymSolucoes\LaravelBoilerplate;
+namespace AgenciaMaior\LaravelBoilerplate;
 
 use Illuminate\Support\ServiceProvider;
 use Illuminate\Support\Facades\Route;
@@ -15,8 +15,7 @@ class LaravelBoilerplateServiceProvider extends ServiceProvider
     public function boot()
     {
         $this->commands([
-            \KdymSolucoes\LaravelBoilerplate\Commands\Install::class,
-            \KdymSolucoes\LaravelBoilerplate\Commands\Auth::class,
+            \AgenciaMaior\LaravelBoilerplate\Commands\Install::class,
         ]);
 
         // $this->loadMigrationsFrom(__DIR__ . '/migrations');

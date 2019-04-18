@@ -10,7 +10,6 @@ require('webpack-jquery-ui/css');
 require('webpack-jquery-ui/datepicker');
 require('summernote');
 require('summernote/dist/summernote-bs4');
-require('./bootstrap_forms');
 
 window.moment = require('moment');
 window.numeral = require('numeral');

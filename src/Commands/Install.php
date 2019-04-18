@@ -1,6 +1,6 @@
 <?php
 
-namespace KdymSolucoes\LaravelBoilerplate\Commands;
+namespace AgenciaMaior\LaravelBoilerplate\Commands;
 
 use Illuminate\Console\Command;
 use File;
@@ -69,7 +69,7 @@ class Install extends Command
 
         $this->setTemplates();
 
-        $this->copyImages();
+        //$this->copyImages();
 
         echo "\033[32mPronto\033[0m\n";
 
@@ -215,7 +215,7 @@ class Install extends Command
 
     public function setRoutes() {
         $routesFile = self::ROOT_PATH . '/routes/web.php';
-        $command = '\KdymSolucoes\LaravelBoilerplate\LaravelBoilerplateServiceProvider::routes();';
+        $command = '\AgenciaMaior\LaravelBoilerplate\LaravelBoilerplateServiceProvider::routes();';
 
         $file = fopen($routesFile, 'r');
 

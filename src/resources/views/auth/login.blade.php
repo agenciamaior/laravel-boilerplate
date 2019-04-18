@@ -59,7 +59,7 @@
 
                     {{ Form::bsText('name', 'Nome') }}
 
-                    {{ Form::bsText('email', 'E-mail') }}
+                    {{ Form::bsEmail('email', 'E-mail') }}
 
                     {{ Form::bsPassword('password', 'Senha') }}
 

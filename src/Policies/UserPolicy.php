@@ -10,26 +10,26 @@ class UserPolicy
     use HandlesAuthorization;
 
     public function index(User $user) {
-        return $user->role == User::ROLE_ADMIN;
+        // Suas regras aqui
     }
 
     public function create(User $user) {
-        return $user->role == User::ROLE_ADMIN;
+        // Suas regras aqui
     }
 
     public function edit(User $user, User $userToEdit) {
-        return $user->role == User::ROLE_ADMIN;
+        // Suas regras aqui
     }
 
     public function destroy(User $user, User $userToDestroy) {
-        return $user->role == User::ROLE_ADMIN && $user->id != $userToDestroy->id;
+        // Suas regras aqui
     }
 
     public function block(User $user, User $userToBlock) {
-        return $user->role == User::ROLE_ADMIN && $user->id != $userToBlock->id;
+        // Suas regras aqui
     }
 
     public function unblock(User $user, User $userToUnblock) {
-        return $user->role == User::ROLE_ADMIN && $user->id != $userToUnblock->id;
+        // Suas regras aqui
     }
 }

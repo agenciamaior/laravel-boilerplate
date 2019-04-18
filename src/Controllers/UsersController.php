@@ -20,6 +20,7 @@ class UsersController extends Controller
         $user->fill($request->all());
 
         $user->password = Hash::make($request->password);
+        $user->role = User::ROLE_ADMIN;
 
         $user->save();
 

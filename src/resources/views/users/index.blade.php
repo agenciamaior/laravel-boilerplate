@@ -46,16 +46,22 @@
 
                                     @if (!$u->locked)
                                         @can('block', $u)
-                                            <a href="{{ route('users.block', ['user' => $u]) }}" class="btn btn-default btn-sm confirmable"><i class="fa fa-lock"></i> Bloquear</a>
+                                            @if ($u->id != Auth::user()->id)
+                                                <a href="{{ route('users.block', ['user' => $u]) }}" class="btn btn-default btn-sm confirmable"><i class="fa fa-lock"></i> Bloquear</a>
+                                            @endif
                                         @endcan
                                     @else
                                         @can('unblock', $u)
-                                            <a href="{{ route('users.unblock', ['user' => $u]) }}" class="btn btn-default btn-sm confirmable"><i class="fa fa-lock-open"></i> Desbloquear</a>
+                                            @if ($u->id != Auth::user()->id)
+                                                <a href="{{ route('users.unblock', ['user' => $u]) }}" class="btn btn-default btn-sm confirmable"><i class="fa fa-lock-open"></i> Desbloquear</a>
+                                            @endif
                                         @endcan
                                     @endif
 
                                     @can('destroy', $u)
-                                        {{ Html::bsDelete('Excluir', route('users.destroy', ['user' => $u]), ['button_class' => 'btn btn-danger btn-sm confirmable']) }}
+                                        @if ($u->id != Auth::user()->id)
+                                            {{ Html::deleteLink('Excluir', route('users.destroy', ['user' => $u]), ['button_class' => 'btn btn-danger btn-sm confirmable']) }}
+                                        @endif
                                     @endcan
                                 </div>
                             </td>

@@ -8,7 +8,9 @@
 @import "~@ttskch/select2-bootstrap4-theme/dist/select2-bootstrap4.min";
 @import "~summernote/dist/summernote-bs4";
 
-@import "variables";
+$fa-font-path: "../webfonts";
+
+$colorDanger: #f56954;
 
 .content-wrapper > .content {
     padding-bottom: 1em;
