@@ -1,10 +1,13 @@
 @extends('boilerplate.page')
 
 @section('header-title')
-    <h1>
-        Usuários
-    </h1>
+    <h1>Usuários</h1>
 @stop
+
+@section('header-breadcrumbs')
+    <li class="breadcrumb-item"><a href="/">Home</a></li>
+    <li class="breadcrumb-item active">Usuários</li>
+@endsection
 
 @section('content')
     <div class="my-2">

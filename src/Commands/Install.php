@@ -69,8 +69,6 @@ class Install extends Command
 
         $this->setTemplates();
 
-        //$this->copyImages();
-
         echo "\033[32mPronto\033[0m\n";
 
         echo "\033[32mBoilerplate instalado com sucesso\033[0m\n";
@@ -78,8 +76,6 @@ class Install extends Command
 
     public function installNpmPackages() {
         $command = 'npm install';
-
-        //echo "$command \n";
 
         exec($command);        
 
@@ -100,8 +96,6 @@ class Install extends Command
         ];
 
         $command = 'npm i ' . implode(' ', $npmLibraries);
-
-        //echo "$command \n";
 
         exec($command);
     }
@@ -124,30 +118,11 @@ class Install extends Command
     }
 
     public function setStyles() {
-        // copy(self::SOURCES_PATH . '/resources/sass/_boilerplate.scss', self::ROOT_PATH . '/resources/sass/_boilerplate.scss');
         File::copyDirectory(self::SOURCES_PATH . '/resources/sass', self::ROOT_PATH . '/resources/sass');
     }
 
-    public function setScripts() {
-        // copy(self::SOURCES_PATH . '/resources/js/boilerplate.js', self::ROOT_PATH . '/resources/js/boilerplate.js');
-
-        // $i18nDir = self::ROOT_PATH . '/resources/js/i18n';
-
-        // if (!is_dir($i18nDir)) {
-        //     mkdir($i18nDir);
-        // }
-
-        // $i18nBoilerplateDir = $i18nDir . '/boilerplate';
-
-        // if (!is_dir($i18nBoilerplateDir)) {
-        //     mkdir($i18nBoilerplateDir);
-        // }
-
-        // copy(self::SOURCES_PATH . '/resources/js/i18n/boilerplate/pt-br.js', self::ROOT_PATH . '/resources/js/i18n/boilerplate/pt-br.js');
-        
+    public function setScripts() {        
         $command = 'php artisan vendor:publish --tag=bootstrap_forms_js --force';
-
-        //echo "$command \n";
 
         exec($command);
 
@@ -179,37 +154,18 @@ class Install extends Command
     }
 
     public function setControllers() {
-        // copy(self::SOURCES_PATH . '/Controllers/UsersController.php', self::ROOT_PATH . '/app/Http/Controllers/UsersController.php');
-
         File::copyDirectory(self::SOURCES_PATH . '/Controllers', self::ROOT_PATH . '/app/Http/Controllers');
     }
 
     public function setTemplates() {
-        // $viewsDir = self::ROOT_PATH . '/resources/views/boilerplate';
-
-        // if (!is_dir($viewsDir)) {
-        //     mkdir($viewsDir);
-        // }
-
-        // copy(self::SOURCES_PATH . '/resources/views/auth/login.blade.php', self::ROOT_PATH . '/resources/views/auth/login.blade.php');
-
-        // copy(self::SOURCES_PATH . '/resources/views/boilerplate/main-menu.blade.php', self::ROOT_PATH . '/resources/views/boilerplate/main-menu.blade.php');
-        // copy(self::SOURCES_PATH . '/resources/views/boilerplate/master.blade.php', self::ROOT_PATH . '/resources/views/boilerplate/master.blade.php');
-        // copy(self::SOURCES_PATH . '/resources/views/boilerplate/page.blade.php', self::ROOT_PATH . '/resources/views/boilerplate/page.blade.php');
-        // copy(self::SOURCES_PATH . '/resources/views/boilerplate/raw.blade.php', self::ROOT_PATH . '/resources/views/boilerplate/raw.blade.php');
-
         File::copyDirectory(self::SOURCES_PATH . '/resources/views', self::ROOT_PATH . '/resources/views');
     }
 
+    public function setI18n() {
+        File::copyDirectory(self::SOURCES_PATH . '/resources/lang', self::ROOT_PATH . '/resources/lang');
+    }
+
     public function copyImages() {
-        // $imagesDir = self::ROOT_PATH . '/public/images';
-
-        // if (!is_dir($imagesDir)) {
-        //     mkdir($imagesDir);
-        // }
-
-        // copy(self::SOURCES_PATH . '/public/images/user.png', self::ROOT_PATH . '/public/images/user.png');
-
         File::copyDirectory(self::SOURCES_PATH . '/public/images', self::ROOT_PATH . '/public/images');
     }
 

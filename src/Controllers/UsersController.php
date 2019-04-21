@@ -81,6 +81,10 @@ class UsersController extends Controller
 
         $user->fill($request->all());
 
+        if (!empty($request->new_password)) {
+            $user->password = Hash::make($request->new_password);
+        }
+
         $user->save();
 
         return redirect()->route('users.index')->with('flash.success', 'Usuário salvo com sucesso');

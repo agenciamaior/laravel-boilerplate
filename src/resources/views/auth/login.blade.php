@@ -3,7 +3,7 @@
 @section('content')
     <div class="login-box">
         <div class="login-logo">
-            <b>Admin</b>LTE
+            <b>Laravel</b> Boilerplate
         </div>
 
         <div class="card">
@@ -46,14 +46,14 @@
                     <p class="login-actions">
                         @if ($errors->has('email') || $errors->has('password'))
                             <div class="alert alert-danger">
-                                E-mail ou senha inválidos
+                                Usuário ou senha inválidos
                             </div>
                         @endif
 
                         <p><a href="#">Esqueci minha senha</a></p>
                     </p>
                 @else
-                    <h6 class="to-center">Nenhum usuário encontrado. Por favor, cadastre o primeiro usuário</h6>
+                    <h6 class="text-center">Nenhum usuário encontrado. Por favor, cadastre o primeiro usuário.</h6>
 
                     {{ Form::open(['url' => route('users.first-user'), 'id' => 'first-user-form']) }}
 
@@ -65,7 +65,7 @@
 
                     {{ Form::bsPassword('confirm_password', 'Repita a Senha') }}
 
-                    <button type="submit" class="btn btn-primary btn-block btn-flat">Salvar e entrar</button>
+                    <button type="submit" class="btn btn-primary btn-block btn-flat">Salvar e Entrar</button>
 
                     {{ Form::close() }}
                 @endif

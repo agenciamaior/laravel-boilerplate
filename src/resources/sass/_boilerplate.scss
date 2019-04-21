@@ -17,13 +17,22 @@ $colorDanger: #f56954;
 }
 
 form {
+    label.error {
+        color: $colorDanger;
+        margin-top: 3px;
+        display: block;
+    }
+
     input.error, select.error {
         border-color: $colorDanger;
     }
 
-    label.error {
-        color: $colorDanger;
-        margin-top: 3px;
+    .error .select2-selection {
+        border-color: $colorDanger !important;
+    }
+
+    .note-frame.error {
+        border-color: $colorDanger !important;
     }
 
     .form-image-container {

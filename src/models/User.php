@@ -13,11 +13,6 @@ class User extends Authenticatable
     const ROLE_ADMIN = 0;
     const ROLE_COMMON = 1;
 
-    public static $roles = [
-        self::ROLE_ADMIN => 'Administrador',
-        self::ROLE_COMMON => 'Comum',
-    ];
-
     /**
      * The attributes that are mass assignable.
      *
@@ -55,7 +50,14 @@ class User extends Authenticatable
         }
     }
 
+    public static function roles() {
+        return [
+            self::ROLE_ADMIN => 'Administrador',
+            self::ROLE_COMMON => 'Comum',
+        ];
+    }
+
     public function getRoleStringAttribute() {
-        return self::$roles[$this->role];
+        return self::roles()[$this->role];
     }
 }

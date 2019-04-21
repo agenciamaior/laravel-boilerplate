@@ -14,6 +14,16 @@ Biblioteca para gerar um template padrão de um painel administrativo baseado em
     5. [ACLs](#acl)
     6. [Usuários](#users)
     7. [Rotas](#routes)
+    8. [UI](#ui)
+        1. [Máscaras](#masks)
+        2. [Datepicker](#datepicker)
+        3. [Select2](#select2)
+        4. [Editor](#editor)
+    9. [Validações](#validations)
+    10. [Confirmable](#confirmable)
+    11. [Animação no submit do formulário](#form-spinner)
+    12. [Parsers](#parsers)
+    13. [Estados Brasileiros](#ufs)
 
 ## <a name="dependencias"></a> Dependências
 
@@ -115,13 +125,15 @@ Essas constantes são definidas dentro do model *app/User.php*:
 const ROLE_ADMIN = 0;
 const ROLE_COMMON = 1;
 
-public static $roles = [
-    self::ROLE_ADMIN => 'Administrador',
-    self::ROLE_COMMON => 'Comum',
-];
+public static function roles() {
+    return [
+        self::ROLE_ADMIN => 'Administrador',
+        self::ROLE_COMMON => 'Comum',
+    ];
+}
 
 public function getRoleStringAttribute() {
-    return self::$roles[$this->role];
+    return self::roles()[$this->role];
 }
 
 //...
@@ -173,6 +185,11 @@ Estrutura da view *resources/views/home.blade.php*, seguindo o template da bibli
         Bem-vindo
     </h1>
 @stop
+
+@section('header-breadcrumbs')
+    <li class="breadcrumb-item"><a href="/">Home</a></li>
+    <li class="breadcrumb-item active">Dashboard</li>
+@endsection
 
 @section('content')
     {{-- Seu conteúdo aqui --}}
@@ -360,9 +377,285 @@ Route::resource('/users', 'UsersController');
 
 Qualquer uma dessas rotas pode ser sobrescrita, contanto que sejam definidas antes do comando acima.
 
-mascaras
+### <a name="ui"></a> UI
 
-validacoes
+#### <a name="masks"></a> Máscaras
 
-i18n
-js
+As máscaras utilizam as bibliotecas jQuery [MaskPlugin](https://github.com/igorescobar/jQuery-Mask-Plugin) e [MaskMoney](https://github.com/plentz/jquery-maskmoney).
+
+Para utilizar essas máscaras, adicione a respectiva classe ao campo:
+
+* **.cpf-mask** - CPF (000.000.000-00)
+* **.cnpj-mask** - CNPJ (00.000.000/0000-00)
+* **.cpf-cnpj-mask** - CPF ou CNPJ no mesmo campo, muda a medida que você vai digitando
+* **.tel-ddd-mask** - Telefone com DDD, aceita com ou sem o dígito 9 ((00) 00000000 ou (00) 900000000)
+* **.cep-mask** - CEP (00000-000)
+* **.time-mask** - Horas, formato *horas:minutos* (00:00)
+* **.date-mask** - Data, formato *dia/mês/ano* (99/99/9999)
+* **.money-mask** - Dinheiro (R$ 999.999,99)
+* **.number-mask** - Número com casas decimais (999.999,99)
+* **.percent-mask** - Porcentagem (999,99%)
+
+Você pode ver um exemplo de utilização das máscaras nesse link.
+
+A configuração das máscaras pode ser alterada em *resources/js/boilerplate.js*.
+
+#### <a name="datepicker"></a> Datepicker
+
+Adicione a classe **.datepicker** a um campo para utilizar o Datepicker da biblioteca [jQueryUI](https://jqueryui.com/datepicker/).
+
+**Obs.:** A classe **.date-mask** pode ser usada em conjunto com o Datepicker.
+
+Você pode ver um exemplo de utilização do Datepicker nesse link.
+
+A configuração do Datepicker pode ser alterada em *resources/js/boilerplate.js*.
+
+#### <a name="select2"></a> Select2
+
+Adicione a classe **.select-2** a um campo do tipo Select para utilizar o [Select2](https://select2.org/).
+
+Você pode ver um exemplo de utilização do Select nesse link.
+
+A configuração do Select2 pode ser alterada em *resources/js/boilerplate.js*.
+
+#### <a name="editor"></a> Editor
+
+Acidione a classe **.editor** a um campo do tipo TextArea para utilizar o [Summernote](https://summernote.org/).
+
+Você pode ver um exemplo de utilização do Select nesse link.
+
+A configuração do Editor pode ser alterada em *resources/js/boilerplate.js*.
+
+### <a name="validations"></a> Validações
+
+Essa seção descreve algumas validações customizadas para serem utilizadas na biblioteca [jQuery Validation](https://jqueryvalidation.org/).
+
+Todas as validações podem ser alteradas em *resources/js/boilerplate.js*.
+
+#### dateBR
+
+Valida um campo para uma data válida no formato *dd/mm/aaaa*.
+
+**Exemplo:**
+
+```php
+{{ Form::bsText('data', 'Data', ['class' => 'datepicker date-mask']) }}
+```
+
+```javascript
+$('#id-do-formulario').validate({
+    rules: {
+        data: {
+            required: true,
+            dateBR: true,
+        },
+    }
+});
+```
+
+Um exemplo de utilização desse validator pode ser visto nesse link.
+
+#### period
+
+Valida um campo de data em relação a outro campo de data para um período válido entre os dois.
+
+**Exemplo:**
+
+```html
+ <div class="row">
+    <div class="col-md-6">
+        {{ Form::bsText('data_inicio', 'Data Início', ['class' => 'datepicker date-mask']) }}
+    </div>
+
+    <div class="col-md-6">
+        {{ Form::bsText('data_fim', 'Data Fim', ['class' => 'datepicker date-mask']) }}
+    </div>
+</div>
+```
+
+```javascript
+$('#id-do-formulario').validate({
+    rules: {
+        data_inicio: {
+            required: true,
+            dateBR: true,
+        },
+        data_fim: {
+            required: true,
+            dateBR: true,
+            period: ['data_inicio'],
+        },
+    }
+});
+```
+
+Um exemplo de utilização desse validator pode ser visto nesse link.
+
+#### filesize
+
+Valida um campo do tipo File para um tamanho de arquivo específico, em Megabytes.
+
+**Exemplo:**
+
+```php
+{{ Form::bsFile('arquivo', 'Arquivo <small>máx 2MB</small>') }}
+```
+
+```javascript
+$('#id-do-formulario').validate({
+    rules: {
+        arquivo: {
+            required: true,
+            extension: ['jpg', 'jpeg', 'png'],
+            filesize: 2,
+        },
+    }
+});
+```
+
+#### cpf
+
+Valida um campo contendo a máscara **.cpf-mask** para um CPF válido, utilizando a validação de módulo 11.
+
+**Exemplo:**
+
+```php
+{{ Form::bsText('cpf', 'CPF', ['class' => 'cpf-mask']) }}
+```
+
+```javascript
+$('#id-do-formulario').validate({
+    rules: {
+        cpf: {
+            required: true,
+            cpf: true,
+        },
+    }
+});
+```
+
+#### cnpj
+
+Valida um campo contendo a máscara **.cnpj-mask** para um CNPJ válido, utilizando a validação de módulo 11.
+
+**Exemplo:**
+
+```php
+{{ Form::bsText('cnpj', 'CNPJ', ['class' => 'cnpj-mask']) }}
+```
+
+```javascript
+$('#id-do-formulario').validate({
+    rules: {
+        cnpj: {
+            required: true,
+            cnpj: true,
+        },
+    }
+});
+```
+#### cpfCnpj
+
+Valida um campo contendo a máscara **.cpf-cnpj-mask** para um CPF/CNPJ válido, utilizando a validação de módulo 11.
+
+**Exemplo:**
+
+```php
+{{ Form::bsText('cpf_cnpj', 'CPF/CNPJ', ['class' => 'cpf-cnpj-mask']) }}
+```
+
+```javascript
+$('#id-do-formulario').validate({
+    rules: {
+        cpf_cnpj: {
+            required: true,
+            cpfCnpj: true,
+        },
+    }
+});
+```
+
+#### editorRequired
+
+Verifica se um campo contendo a máscara **.editor** está vazio ou não.
+
+**Exemplo:**
+
+```php
+{{ Form::bsTextarea('editor', 'Editor', ['class' => 'editor']) }}
+```
+
+```javascript
+$('#id-do-formulario').validate({
+    ignore: [], // Essa diretiva é obrigatória para esse validator funcionar
+    rules: {
+        editor: 'editorRequired',
+    }
+});
+```
+
+### <a name="confirmable"></a> Confirmable
+
+Adicione a classe **.confirmable** a qualquer botão ou link para adicionar uma janela de confirmação a ele. Essa função é muito usada em botões de excluir.
+
+### <a name="form-spinner"></a> Animação no submit do formulário
+
+Por padrão, ao fazer o submit de um formulário, o botão de submit vai ficar desabilitado e o texto dentro dele será substituído por um spinner. Isso impede o usuário de clicar várias vezes no botão de submit.
+
+Para desabilitar esse comportamento, adicione a classe **.without-spinner** à tag ``<form>`` da sua página.
+
+### <a name="parsers"></a> Parsers
+
+Dentro do arquivo *app/Http/Controller/Controller.php*, a instalação vai copiar duas funções para transformar datas e valores do tipo dinheiro.
+
+**Exemplo de utilização dentro de um Controller:**
+
+```php
+$date = '03/05/2019';
+$newDate = $this->parseDate($date); // 2019-05-03
+
+$price = 'R$ 300,00';
+$newPrice = $this->parseCurrency($price); // 300
+```
+
+### <a name="ufs"></a> Estados Brasileiros
+
+Dentro do arquivo *app/Http/Controller/Controller.php*, a instalação vai copiar um array com todos os estados brasileiros e suas respectivas siglas:
+
+```php
+const ESTADOS_BRASILEIROS = [
+    'AC' => 'Acre',
+    'AL' => 'Alagoas',
+    'AP' => 'Amapá',
+    'AM' => 'Amazonas',
+    'BA' => 'Bahia',
+    'CE' => 'Ceará',
+    'DF' => 'Distrito Federal',
+    'ES' => 'Espírito Santo',
+    'GO' => 'Goiás',
+    'MA' => 'Maranhão',
+    'MT' => 'Mato Grosso',
+    'MS' => 'Mato Grosso do Sul',
+    'MG' => 'Minas Gerais',
+    'PA' => 'Pará',
+    'PB' => 'Paraíba',
+    'PR' => 'Paraná',
+    'PE' => 'Pernambuco',
+    'PI' => 'Piauí',
+    'RJ' => 'Rio de Janeiro',
+    'RN' => 'Rio Grande do Norte',
+    'RS' => 'Rio Grande do Sul',
+    'RO' => 'Rondônia',
+    'RR' => 'Roraima',
+    'SC' => 'Santa Catarina',
+    'SP' => 'São Paulo',
+    'SE' => 'Sergipe',
+    'TO' => 'Tocantins'
+];
+```
+
+**Exemplo de utilização num Select:**
+
+```php
+{{ Form::bsSelect('estados', 'Estados', \App\Http\Controller::ESTADOS_BRASILEIROS) }}
+```

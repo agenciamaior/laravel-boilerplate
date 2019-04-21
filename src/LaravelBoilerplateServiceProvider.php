@@ -17,9 +17,6 @@ class LaravelBoilerplateServiceProvider extends ServiceProvider
         $this->commands([
             \AgenciaMaior\LaravelBoilerplate\Commands\Install::class,
         ]);
-
-        // $this->loadMigrationsFrom(__DIR__ . '/migrations');
-        // $this->loadRoutesFrom(__DIR__ . '/routes/routes.php');
     }
 
     /**

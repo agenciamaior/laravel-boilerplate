@@ -23,6 +23,9 @@ $.extend($.validator.messages, {
     pattern: 'Formato inválido',
     filesize: 'Tamanho inválido (Máximo {0}MB)',
     extension: 'Extensão inválida',
+    cpf: 'CPF inválido',
+    cnpj: 'CNPJ inválido',
+    cpfCnpj: 'CPF/CNPJ inválido',
 });
 
 $.validator.patterns = {

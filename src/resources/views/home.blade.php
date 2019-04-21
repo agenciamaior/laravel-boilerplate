@@ -5,10 +5,13 @@
 @endsection
 
 @section('header-title')
-    <h1>
-        Bem-vindo
-    </h1>
+    <h1>Bem-vindo</h1>
 @stop
+
+@section('header-breadcrumbs')
+    <li class="breadcrumb-item"><a href="/">Home</a></li>
+    <li class="breadcrumb-item active">Dashboard</li>
+@endsection
 
 @section('content')
     {{-- Seu conteúdo aqui --}}

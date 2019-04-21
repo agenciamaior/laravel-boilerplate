@@ -4,6 +4,11 @@
     <h1>Perfil</h1>
 @endsection
 
+@section('header-breadcrumbs')
+    <li class="breadcrumb-item"><a href="/">Home</a></li>
+    <li class="breadcrumb-item active">Perfil</li>
+@endsection
+
 @section('content')
     {{ Form::model($user, ['id' => 'profile-form', 'url' => route('users.save-profile'), 'files' => true]) }}
 
@@ -32,19 +37,19 @@
         <div class="card-body">
             <div class="row">
                 <div class="col-md-6">
-                    {{ Form::bsPassword('old_password', 'Senha Antiga') }}
+                    {{ Form::bsPassword('old_password', 'Senha Antiga', ['autocomplete' => 'new-password']) }}
                 </div>
             </div>
 
             <div class="row">
                 <div class="col-md-6">
-                    {{ Form::bsPassword('new_password', 'Nova Senha') }}
+                    {{ Form::bsPassword('new_password',  'Nova Senha') }}
                 </div>
             </div>
 
             <div class="row">
                 <div class="col-md-6">
-                    {{ Form::bsPassword('confirm_new_password', 'Confirmação da Nova Senha') }}
+                    {{ Form::bsPassword('confirm_new_password',  'Repita a Nova Senha') }}
                 </div>
             </div>
         </div>
@@ -86,20 +91,20 @@
                 'new_password': {
                     'required': () => $('#old_password').val() !== '',
                 },
-                'confirm_password': {
+                'confirm_new_password': {
                     'required': () => $('#old_password').val() !== '' && $('#new_password').val() !== '',
                     'equalTo': '#new_password'
                 }
             },
             messages: {
                 'email': {
-                    'remote': 'E-mail já está sendo usado'
+                    'remote': 'Este e-mail já está sendo utilizado'
                 },
                 'old_password': {
                     'remote': 'Senha inválida'
                 },
-                'confirm_password': {
-                    'equalTo': 'Campo deve ser igual à nova senha'
+                'confirm_new_password': {
+                    'equalTo': 'Deve ser igual à Nova Senha'
                 }
             }
         })
