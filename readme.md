@@ -1,6 +1,6 @@
 # Laravel Boilerplate
 
-Biblioteca para gerar um template padrão de um painel administrativo baseado em AdminLTE. Já vem com algumas funções pré-definidas, como: controle de usuários, campos com máscara, etc.
+Biblioteca para gerar um template padrão de um painel administrativo baseado em [AdminLTE 3](https://adminlte.io/themes/dev/AdminLTE/index.html). Já vem com algumas funções pré-definidas, como: controle de usuários, campos com máscara, etc.
 
 ## Índice
 
