@@ -94,3 +94,7 @@ form {
         box-shadow: 0 0 !important;
     }
 }
+
+.ui-datepicker {
+    z-index: 999 !important;
+}

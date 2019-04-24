@@ -63,7 +63,7 @@
 
                                     @can('destroy', $u)
                                         @if ($u->id != Auth::user()->id)
-                                            {{ Html::deleteLink('Excluir', route('users.destroy', ['user' => $u]), ['button_class' => 'btn btn-danger btn-sm confirmable']) }}
+                                            {{ Html::deleteLink('Excluir', route('users.destroy', ['user' => $u]), ['button_class' => 'btn btn-danger btn-sm confirmable', 'icon' => 'trash']) }}
                                         @endif
                                     @endcan
                                 </div>
