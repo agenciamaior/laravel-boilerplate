@@ -24,6 +24,7 @@ Biblioteca para gerar um template padrão de um painel administrativo baseado em
     11. [Animação no submit do formulário](#form-spinner)
     12. [Parsers](#parsers)
     13. [Estados Brasileiros](#ufs)
+4. [Bibliotecas utilizadas](#libraries)
 
 ## <a name="dependencias"></a> Dependências
 
