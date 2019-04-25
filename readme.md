@@ -396,7 +396,7 @@ Para utilizar essas máscaras, adicione a respectiva classe ao campo:
 * **.number-mask** - Número com casas decimais (999.999,99)
 * **.percent-mask** - Porcentagem (999,99%)
 
-Você pode ver um exemplo de utilização das máscaras nesse link.
+Você pode ver um exemplo de utilização das máscaras nesse [link](http://laravel-boilerplate.agenciamaior.com.br/inputs).
 
 A configuração das máscaras pode ser alterada em *resources/js/boilerplate.js*.
 
@@ -406,7 +406,7 @@ Adicione a classe **.datepicker** a um campo para utilizar o Datepicker da bibli
 
 **Obs.:** A classe **.date-mask** pode ser usada em conjunto com o Datepicker.
 
-Você pode ver um exemplo de utilização do Datepicker nesse link.
+Você pode ver um exemplo de utilização do Datepicker nesse [link](http://laravel-boilerplate.agenciamaior.com.br/inputs).
 
 A configuração do Datepicker pode ser alterada em *resources/js/boilerplate.js*.
 
@@ -414,7 +414,7 @@ A configuração do Datepicker pode ser alterada em *resources/js/boilerplate.js
 
 Adicione a classe **.select-2** a um campo do tipo Select para utilizar o [Select2](https://select2.org/).
 
-Você pode ver um exemplo de utilização do Select nesse link.
+Você pode ver um exemplo de utilização do Select nesse [link](http://laravel-boilerplate.agenciamaior.com.br/inputs).
 
 A configuração do Select2 pode ser alterada em *resources/js/boilerplate.js*.
 
@@ -422,7 +422,7 @@ A configuração do Select2 pode ser alterada em *resources/js/boilerplate.js*.
 
 Acidione a classe **.editor** a um campo do tipo TextArea para utilizar o [Summernote](https://summernote.org/).
 
-Você pode ver um exemplo de utilização do Select nesse link.
+Você pode ver um exemplo de utilização do Select nesse [link](http://laravel-boilerplate.agenciamaior.com.br/inputs).
 
 A configuração do Editor pode ser alterada em *resources/js/boilerplate.js*.
 
@@ -453,7 +453,7 @@ $('#id-do-formulario').validate({
 });
 ```
 
-Um exemplo de utilização desse validator pode ser visto nesse link.
+Um exemplo de utilização desse validator pode ser visto nesse [link](http://laravel-boilerplate.agenciamaior.com.br/validators).
 
 #### period
 
@@ -489,7 +489,7 @@ $('#id-do-formulario').validate({
 });
 ```
 
-Um exemplo de utilização desse validator pode ser visto nesse link.
+Um exemplo de utilização desse validator pode ser visto nesse [link](http://laravel-boilerplate.agenciamaior.com.br/validators).
 
 #### filesize
 
@@ -575,6 +575,8 @@ $('#id-do-formulario').validate({
 });
 ```
 
+Um exemplo de utilização desses validators pode ser visto nesse [link](http://laravel-boilerplate.agenciamaior.com.br/validators).
+
 #### editorRequired
 
 Verifica se um campo contendo a máscara **.editor** está vazio ou não.
@@ -593,6 +595,8 @@ $('#id-do-formulario').validate({
     }
 });
 ```
+
+Um exemplo de utilização desse validator pode ser visto nesse [link](http://laravel-boilerplate.agenciamaior.com.br/validators).
 
 ### <a name="confirmable"></a> Confirmable
 
@@ -659,3 +663,19 @@ const ESTADOS_BRASILEIROS = [
 ```php
 {{ Form::bsSelect('estados', 'Estados', \App\Http\Controller::ESTADOS_BRASILEIROS) }}
 ```
+
+## <a name="libraries"></a> Bibliotecas utilizadas
+
+* [AdminLTE 3](https://adminlte.io/themes/dev/AdminLTE/index.html)
+* [FontAwesome 5](https://fontawesome.com/)
+* [Bootstrap 4](https://getbootstrap.com/)
+* [jQuery Validation](https://jqueryvalidation.org/)
+* [Select2](https://select2.org/)
+* [jQuery MaskMoney](https://github.com/plentz/jquery-maskmoney)
+* [jQuery MaskPlugin](https://github.com/igorescobar/jQuery-Mask-Plugin)
+* [Moment.js](https://momentjs.com/)
+* [Numeral.js](http://numeraljs.com/)
+* [jQueryUI](https://jqueryui.com/)
+* [Summernote](https://summernote.org/)
+* [Chart.js](https://www.chartjs.org/)
+* [BootstrapForms](https://github.com/agenciamaior/bootstrap_forms)

@@ -93,6 +93,7 @@ class Install extends Command
             'webpack-jquery-ui',
             'summernote',
             'codemirror',
+            'chart.js',
         ];
 
         $command = 'npm i ' . implode(' ', $npmLibraries);
